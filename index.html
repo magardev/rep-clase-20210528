@@ -14,9 +14,24 @@
             <a href="#" class="navbar-brand p-2">Aula 2021-05-28</a>
         </div>
     </nav>
-    <h5 class="card-title bg-warning text-center">Lista de Cachorros</h5>
     <div class="container">
-        <div class="row" id="id_lista_cachorros">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title bg-warning text-center">Lista de Cachorros</h5>
+                <div class="row" id="id_lista_cachorros"></div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="card-title bg-warning text-center">Lista de Gifs</h5>
+                <form id="id_frm_giphy" action="#">
+                    <div class="form-group">
+                        <input type="text" name="palavra" id="id_palavra" placeholder="Pesquisa gifs" 
+                        class="form-control">
+                    </div>
+                    <input type="button" name="btn_pesquisar" id="id_btn_pesquisar" value="Pesquisar" 
+                    class="btn btn-primary btn-block mt-2" onclick="pesquisar_gifs()">
+                </form>
+                <div class="row" id="id_lista_gifs"></div>
+            </div>
         </div>
     </div>
 

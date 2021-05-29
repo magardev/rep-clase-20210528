@@ -29,7 +29,6 @@ promesa_cachorro
 const desenhar_cachorros = async (url_cachorro) => {
     const res_cachorros = await fetch(url_cachorro);
     const dat_cachorros = await res_cachorros.json();
-    console.log(dat_cachorros);
     const img_cachorros = dat_cachorros.message
         .map((img) => {
             return `
@@ -48,3 +47,29 @@ const desenhar_cachorros = async (url_cachorro) => {
 }
 
 desenhar_cachorros(url_cachorros);
+
+
+const desenhar_gifs = async (url_gifs) => {
+    const res_gifs = await fetch(url_gifs);
+    const dat_gifs = await res_gifs.json();
+    console.log(dat_gifs);
+    const html_gifs = dat_gifs.data
+    .map((gif) => {
+      return `
+        <div class="card col-md-3" style="width: 18rem;">
+            <h5 class="card-title">${gif.title}</h5>
+            <img src="${gif.images.original.url}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a href="${gif.url}" target="_blank" class="btn btn-primary">Olhar Gif</a>
+            </div>
+        </div>            
+        `;
+    }).join("");
+  document.querySelector('#id_lista_gifs').innerHTML = html_gifs;
+}
+
+function pesquisar_gifs() {
+    const palavra = document.getElementById('id_palavra').value;
+    const url_gifs = `http://api.giphy.com/v1/gifs/search?q=${palavra}&api_key=30lsTyzcd3RYHBxU0SFxNA0XwuKW92u5&limit=10`;
+    desenhar_gifs(url_gifs);
+}
