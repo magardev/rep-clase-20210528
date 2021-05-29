@@ -52,7 +52,7 @@ desenhar_cachorros(url_cachorros);
 const desenhar_gifs = async (url_gifs) => {
     const res_gifs = await fetch(url_gifs);
     const dat_gifs = await res_gifs.json();
-    console.log(dat_gifs);
+    
     const html_gifs = dat_gifs.data
     .map((gif) => {
       return `
@@ -71,5 +71,12 @@ const desenhar_gifs = async (url_gifs) => {
 function pesquisar_gifs() {
     const palavra = document.getElementById('id_palavra').value;
     const url_gifs = `http://api.giphy.com/v1/gifs/search?q=${palavra}&api_key=30lsTyzcd3RYHBxU0SFxNA0XwuKW92u5&limit=10`;
-    desenhar_gifs(url_gifs);
+
+    try {
+        if (palavra !== '') {
+            desenhar_gifs(url_gifs);
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
